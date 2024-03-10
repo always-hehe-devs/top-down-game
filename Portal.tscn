@@ -1,0 +1,71 @@
+[gd_scene load_steps=14 format=3 uid="uid://be3fcquh3jpc4"]
+
+[ext_resource type="Script" path="res://Portal.gd" id="1_plpt7"]
+[ext_resource type="Texture2D" uid="uid://sij5is0najwc" path="res://assets/effects/portal/010.png" id="2_qm5le"]
+[ext_resource type="Texture2D" uid="uid://dqdrvj0rmkbll" path="res://assets/effects/portal/009.png" id="3_1mjwo"]
+[ext_resource type="Texture2D" uid="uid://bkcw2cbvgd1io" path="res://assets/effects/portal/008.png" id="4_d5sh1"]
+[ext_resource type="Texture2D" uid="uid://d2hfp33rd7uer" path="res://assets/effects/portal/007.png" id="5_qb6hw"]
+[ext_resource type="Texture2D" uid="uid://rlvjf46l15au" path="res://assets/effects/portal/001.png" id="6_jajy5"]
+[ext_resource type="Texture2D" uid="uid://cyxkeu1sgcaji" path="res://assets/effects/portal/002.png" id="7_kxkt8"]
+[ext_resource type="Texture2D" uid="uid://bjpwnk8mtnikw" path="res://assets/effects/portal/003.png" id="8_g7s33"]
+[ext_resource type="Texture2D" uid="uid://co0c2phh6xa6x" path="res://assets/effects/portal/004.png" id="9_y8rpg"]
+[ext_resource type="Texture2D" uid="uid://c1uab85m7a0ch" path="res://assets/effects/portal/005.png" id="10_o2nae"]
+[ext_resource type="Script" path="res://HitBox.gd" id="11_ryx6n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h6o70"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qm5le")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1mjwo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d5sh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qb6hw")
+}],
+"loop": false,
+"name": &"Explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_jajy5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kxkt8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_g7s33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_y8rpg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_o2nae")
+}],
+"loop": false,
+"name": &"Spin",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v1wey"]
+radius = 20.025
+
+[node name="Portal" type="Node2D"]
+script = ExtResource("1_plpt7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h6o70")
+animation = &"Explode"
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("11_ryx6n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_v1wey")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

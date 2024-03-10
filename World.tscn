@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ciriowljkojjw"]
+[gd_scene load_steps=6 format=3 uid="uid://ciriowljkojjw"]
 
 [ext_resource type="Texture2D" uid="uid://dshq3ahsb25s1" path="res://assets/Dungeon_Tileset.png" id="1_6r7do"]
 [ext_resource type="PackedScene" uid="uid://cjy2w47ir50to" path="res://Player.tscn" id="2_xeefm"]
+[ext_resource type="PackedScene" uid="uid://dgwy0vfbmao7a" path="res://VampireMob.tscn" id="3_ev4mk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqnhq"]
 texture = ExtResource("1_6r7do")
@@ -344,3 +345,6 @@ layer_0/tile_data = PackedInt32Array(1638428, 131072, 3, 1703964, 196608, 1, 176
 
 [node name="Player" parent="." instance=ExtResource("2_xeefm")]
 position = Vector2(165, 154)
+
+[node name="VampireMob" parent="." instance=ExtResource("3_ev4mk")]
+position = Vector2(82, 78)
