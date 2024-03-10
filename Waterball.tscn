@@ -1,0 +1,90 @@
+[gd_scene load_steps=16 format=3 uid="uid://cv68yckxqclhu"]
+
+[ext_resource type="Script" path="res://WaterBall.gd" id="1_cg622"]
+[ext_resource type="Texture2D" uid="uid://bs3018q50u4bd" path="res://assets/effects/waterball/006.png" id="2_5co74"]
+[ext_resource type="Texture2D" uid="uid://chs01fjlossjw" path="res://assets/effects/waterball/007.png" id="3_58vyp"]
+[ext_resource type="Texture2D" uid="uid://budfy41wdd7eh" path="res://assets/effects/waterball/008.png" id="4_86b6h"]
+[ext_resource type="Texture2D" uid="uid://c2tmsvjj0lgvl" path="res://assets/effects/waterball/009.png" id="5_rd0yj"]
+[ext_resource type="Texture2D" uid="uid://23opdp1j62yv" path="res://assets/effects/waterball/010.png" id="6_2qqho"]
+[ext_resource type="Texture2D" uid="uid://w78lgecvy3rs" path="res://assets/effects/waterball/001.png" id="7_jyqxq"]
+[ext_resource type="Texture2D" uid="uid://i0h8lpugc0ht" path="res://assets/effects/waterball/002.png" id="8_lfvav"]
+[ext_resource type="Texture2D" uid="uid://b76fbo5s6gplq" path="res://assets/effects/waterball/003.png" id="9_h2k33"]
+[ext_resource type="Texture2D" uid="uid://dtlux2k45ni8b" path="res://assets/effects/waterball/004.png" id="10_ng6xg"]
+[ext_resource type="Texture2D" uid="uid://c3dwweeb8l6bu" path="res://assets/effects/waterball/005.png" id="11_yxlk1"]
+[ext_resource type="Script" path="res://HitBox.gd" id="12_drrq3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvkub"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5co74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_58vyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_86b6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rd0yj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2qqho")
+}],
+"loop": false,
+"name": &"Explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_jyqxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_lfvav")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_h2k33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ng6xg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_yxlk1")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u828v"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vk1ui"]
+radius = 15.0
+
+[node name="Waterball" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_cg622")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yvkub")
+animation = &"Explode"
+frame = 4
+frame_progress = 1.0
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("12_drrq3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(16, 1)
+shape = SubResource("CircleShape2D_u828v")
+
+[node name="ImpactDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ImpactDetector"]
+position = Vector2(16, 1)
+shape = SubResource("CircleShape2D_vk1ui")
+
+[connection signal="body_entered" from="ImpactDetector" to="." method="_on_impact_detector_body_entered"]

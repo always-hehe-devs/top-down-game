@@ -5,6 +5,9 @@ var health = 100
 @onready var animation = $AnimatedSprite2D
 
 const FireballScene: PackedScene = preload("res://Fireball.tscn")
+const WaterballScene: PackedScene = preload("res://Waterball.tscn")
+
+var current_attack = "attack_1"
 
 func _ready():
 	animation.play("Idle")
@@ -24,8 +27,12 @@ func _physics_process(_delta):
 
 func _unhandled_input(event):
 	if event.is_action_pressed("left_click"):
-		shoot(FireballScene)
-		
+		match current_attack:
+			"attack_1":
+				shoot(FireballScene)
+			"attack_2":
+				shoot(WaterballScene)	
+				
 func shoot(projectile: PackedScene) -> void:
 	var bullet = projectile.instantiate()
 	bullet.position = global_position
@@ -35,3 +42,6 @@ func shoot(projectile: PackedScene) -> void:
 func take_damage(damage):
 	health -= damage
 	%ProgressBar.value = health
+
+func _on_hud_changed_attack(attack):
+	current_attack = attack
