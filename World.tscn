@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ciriowljkojjw"]
+[gd_scene load_steps=9 format=3 uid="uid://ciriowljkojjw"]
 
 [ext_resource type="Texture2D" uid="uid://dshq3ahsb25s1" path="res://assets/Dungeon_Tileset.png" id="1_6r7do"]
+[ext_resource type="Script" path="res://World.gd" id="1_quq06"]
 [ext_resource type="PackedScene" uid="uid://cjy2w47ir50to" path="res://Player.tscn" id="2_xeefm"]
 [ext_resource type="PackedScene" uid="uid://dgwy0vfbmao7a" path="res://VampireMob.tscn" id="3_ev4mk"]
 [ext_resource type="PackedScene" uid="uid://18c32k00y3tv" path="res://hud.tscn" id="4_lh2pk"]
@@ -336,7 +337,14 @@ texture = ExtResource("1_6r7do")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_aqnhq")
 
+[sub_resource type="Curve2D" id="Curve2D_jo20d"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 30, 51, 0, 0, 0, 0, 284, 51, 0, 0, 0, 0, 283, 193, 0, 0, 0, 0, 30, 193, 0, 0, 0, 0, 30, 51)
+}
+point_count = 5
+
 [node name="World" type="Node"]
+script = ExtResource("1_quq06")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-275, -270)
@@ -352,4 +360,15 @@ position = Vector2(82, 78)
 
 [node name="HUD" parent="." instance=ExtResource("4_lh2pk")]
 
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_jo20d")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(30, 51)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="changed_attack" from="HUD" to="Player" method="_on_hud_changed_attack"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
