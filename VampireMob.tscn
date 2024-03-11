@@ -51,6 +51,8 @@ anti_aliasing = false
 
 [node name="VampireMob" type="CharacterBody2D"]
 z_index = 1
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_s5lm6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -63,8 +65,8 @@ animation = &"Idle"
 frame_progress = 0.660208
 
 [node name="HurtBox" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("6_fqymn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]

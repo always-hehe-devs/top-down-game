@@ -6,7 +6,7 @@ var health = 100
 
 const FireballScene: PackedScene = preload("res://Fireball.tscn")
 const WaterballScene: PackedScene = preload("res://Waterball.tscn")
-@onready var collision = $CollisionShape2D
+
 @onready var hurtbox = $HurtBox
 
 var current_attack = "attack_1"
@@ -26,11 +26,11 @@ func _physics_process(_delta):
 	
 	if is_dashing:
 		speed = dash_speed
-		collision.disabled = true
+		set_collision_mask_value(3,false)
 		hurtbox.set_disabled(true)
 	else:
 		speed = normal_speed
-		collision.disabled = false
+		set_collision_mask_value(3,true)
 		hurtbox.set_disabled(false)
 		
 	if mouse_dir.x < 0:
