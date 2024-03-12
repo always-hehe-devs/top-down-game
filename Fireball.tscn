@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bn8scmetgu8ww"]
+[gd_scene load_steps=17 format=3 uid="uid://bn8scmetgu8ww"]
 
 [ext_resource type="Script" path="res://FireBall.gd" id="1_gbtjb"]
 [ext_resource type="Texture2D" uid="uid://iaogdu3b224y" path="res://assets/effects/fireball/006.png" id="2_wtqwe"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cnf53yjxspils" path="res://assets/effects/fireball/004.png" id="10_jh72t"]
 [ext_resource type="Texture2D" uid="uid://dow8vw23tuuk" path="res://assets/effects/fireball/005.png" id="11_wb5nt"]
 [ext_resource type="Script" path="res://HitBox.gd" id="12_lxf0n"]
+[ext_resource type="Texture2D" uid="uid://c3mw4sexjalrc" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="13_fg3hm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yvkub"]
 animations = [{
@@ -87,5 +88,10 @@ collision_mask = 15
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ImpactDetector"]
 position = Vector2(16, 1)
 shape = SubResource("CircleShape2D_vk1ui")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(16, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("13_fg3hm")
 
 [connection signal="body_entered" from="ImpactDetector" to="." method="_on_impact_detector_body_entered"]

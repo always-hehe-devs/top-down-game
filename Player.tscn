@@ -84,3 +84,6 @@ script = ExtResource("6_2vibx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("RectangleShape2D_e2bn2")
 debug_color = Color(0.309804, 0.494118, 1, 0.419608)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
