@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ciriowljkojjw"]
+[gd_scene load_steps=11 format=3 uid="uid://ciriowljkojjw"]
 
 [ext_resource type="Texture2D" uid="uid://dshq3ahsb25s1" path="res://assets/Dungeon_Tileset.png" id="1_6r7do"]
 [ext_resource type="Script" path="res://World.gd" id="1_quq06"]
 [ext_resource type="PackedScene" uid="uid://cjy2w47ir50to" path="res://Player.tscn" id="2_xeefm"]
 [ext_resource type="PackedScene" uid="uid://dgwy0vfbmao7a" path="res://VampireMob.tscn" id="3_ev4mk"]
+[ext_resource type="Script" path="res://TileMapForeground.gd" id="3_lgp75"]
 [ext_resource type="PackedScene" uid="uid://18c32k00y3tv" path="res://hud.tscn" id="4_lh2pk"]
 [ext_resource type="Texture2D" uid="uid://c3mw4sexjalrc" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="6_om5tq"]
 
@@ -434,6 +435,7 @@ texture = ExtResource("1_6r7do")
 5:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:9/0/physics_layer_0/angular_velocity = 0.0
 5:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:9/0/custom_data_0 = true
 4:9/0 = 0
 4:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:9/0/physics_layer_0/angular_velocity = 0.0
@@ -441,15 +443,18 @@ texture = ExtResource("1_6r7do")
 3:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:9/0/physics_layer_0/angular_velocity = 0.0
 3:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:9/0/custom_data_0 = true
 2:9/0 = 0
 2:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:9/0/physics_layer_0/angular_velocity = 0.0
 1:9/0 = 0
 1:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:9/0/physics_layer_0/angular_velocity = 0.0
+1:9/0/custom_data_0 = true
 0:9/0 = 0
 0:9/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:9/0/physics_layer_0/angular_velocity = 0.0
+0:9/0/custom_data_0 = true
 9:6/0 = 0
 9:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:6/0/physics_layer_0/angular_velocity = 0.0
@@ -545,6 +550,8 @@ physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Ground"
 terrain_set_0/terrain_0/color = Color(0.686275, 0.0980392, 0.352941, 1)
+custom_data_layer_0/name = "lights"
+custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_aqnhq")
 
 [sub_resource type="Curve2D" id="Curve2D_jo20d"]
@@ -568,7 +575,13 @@ position = Vector2(-275, -270)
 scale = Vector2(1.1, 1.1)
 tile_set = SubResource("TileSet_vfjrq")
 format = 2
-layer_0/tile_data = PackedInt32Array(1572883, 65536, 9, 1572898, 65536, 268435465, 1703960, 196608, 9, 1703964, 196608, 9, 1245204, 0, 9, 1245217, 0, 9, 1245210, 0, 9)
+layer_0/tile_data = PackedInt32Array(1572898, 65536, 268435465, 1703960, 196608, 9, 1703964, 196608, 9, 1572882, 65536, 9, 1179674, 0, 9, 1179681, 0, 9, 1179669, 0, 9)
+script = ExtResource("3_lgp75")
+
+[node name="PointLight2D8" type="PointLight2D" parent="TileMapForeground"]
+position = Vector2(557.273, 390)
+scale = Vector2(0.426435, 0.426435)
+texture = ExtResource("6_om5tq")
 
 [node name="Player" parent="." instance=ExtResource("2_xeefm")]
 position = Vector2(165, 154)
@@ -587,46 +600,34 @@ position = Vector2(45, 67)
 rotation = -0.00344826
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true
+wait_time = 2.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.317647, 0.317647, 0.317647, 1)
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(53, 47)
-scale = Vector2(0.469079, 0.469079)
-texture = ExtResource("6_om5tq")
+[node name="VampireMob2" parent="." instance=ExtResource("3_ev4mk")]
+position = Vector2(263, 120)
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
-position = Vector2(32, 124)
-scale = Vector2(0.469079, 0.469079)
-texture = ExtResource("6_om5tq")
+[node name="VampireMob3" parent="." instance=ExtResource("3_ev4mk")]
+position = Vector2(111, 182)
 
-[node name="PointLight2D3" type="PointLight2D" parent="."]
-position = Vector2(281, 124)
-scale = Vector2(0.469079, 0.469079)
-texture = ExtResource("6_om5tq")
+[node name="VampireMob4" parent="." instance=ExtResource("3_ev4mk")]
+position = Vector2(255, 191)
 
-[node name="PointLight2D4" type="PointLight2D" parent="."]
-position = Vector2(262, 47)
-scale = Vector2(0.469079, 0.469079)
-texture = ExtResource("6_om5tq")
+[node name="VampireMob5" parent="." instance=ExtResource("3_ev4mk")]
+position = Vector2(446, -72)
 
-[node name="PointLight2D7" type="PointLight2D" parent="."]
-position = Vector2(149, 46)
-scale = Vector2(0.469079, 0.469079)
-texture = ExtResource("6_om5tq")
+[node name="VampireMob6" parent="." instance=ExtResource("3_ev4mk")]
+position = Vector2(393, -44)
 
-[node name="PointLight2D5" type="PointLight2D" parent="."]
-position = Vector2(118, 158)
-scale = Vector2(0.469079, 0.469079)
-texture = ExtResource("6_om5tq")
+[node name="VampireMob7" parent="." instance=ExtResource("3_ev4mk")]
+position = Vector2(397, -93)
 
-[node name="PointLight2D6" type="PointLight2D" parent="."]
-position = Vector2(183, 159)
-scale = Vector2(0.469079, 0.469079)
-texture = ExtResource("6_om5tq")
+[node name="VampireMob8" parent="." instance=ExtResource("3_ev4mk")]
+position = Vector2(210, -103)
+
+[node name="VampireMob9" parent="." instance=ExtResource("3_ev4mk")]
+position = Vector2(160, -103)
 
 [connection signal="changed_attack" from="HUD" to="Player" method="_on_hud_changed_attack"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

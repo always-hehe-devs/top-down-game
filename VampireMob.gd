@@ -7,6 +7,7 @@ var speed = 20
 const PortalScene: PackedScene = preload("res://Portal.tscn")
 
 var health = 100
+var is_following = false
 
 func _physics_process(_delta):
 	var dir_to_target = position.direction_to(player.global_position)
@@ -15,10 +16,12 @@ func _physics_process(_delta):
 		animation.scale.x = -1
 	elif dir_to_target.x > 0:
 		animation.scale.x = 1
-	velocity = position.direction_to(player.global_position) * speed
 	
-	if position.distance_to(player.global_position) > 23:
-		move_and_slide()
+	if is_following:
+		velocity = position.direction_to(player.global_position) * speed
+	
+		if position.distance_to(player.global_position) > 23:
+			move_and_slide()
 
 func take_damage(damage):
 	health -= damage
@@ -32,4 +35,12 @@ func throw_spell():
 	add_child(spell)
 
 func _on_timer_timeout():
-	throw_spell()
+	if is_following:
+		throw_spell()
+
+func _on_detect_area_body_entered(body):
+	if body != owner:
+		is_following = true
+
+func _on_detect_area_body_exited(body):
+	is_following = false
