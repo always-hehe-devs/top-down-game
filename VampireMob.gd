@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-var speed = 20
+var speed = 40
 
-@onready var player = $"../Player"
+@onready var player = $"../../Player"
 @onready var animation = $AnimatedSprite2D
 const PortalScene: PackedScene = preload("res://Portal.tscn")
 

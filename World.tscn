@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ciriowljkojjw"]
+[gd_scene load_steps=10 format=3 uid="uid://ciriowljkojjw"]
 
 [ext_resource type="Texture2D" uid="uid://dshq3ahsb25s1" path="res://assets/Dungeon_Tileset.png" id="1_6r7do"]
 [ext_resource type="Script" path="res://World.gd" id="1_quq06"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://dgwy0vfbmao7a" path="res://VampireMob.tscn" id="3_ev4mk"]
 [ext_resource type="Script" path="res://TileMapForeground.gd" id="3_lgp75"]
 [ext_resource type="PackedScene" uid="uid://18c32k00y3tv" path="res://hud.tscn" id="4_lh2pk"]
-[ext_resource type="Texture2D" uid="uid://c3mw4sexjalrc" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="6_om5tq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqnhq"]
 texture = ExtResource("1_6r7do")
@@ -575,19 +574,11 @@ position = Vector2(-275, -270)
 scale = Vector2(1.1, 1.1)
 tile_set = SubResource("TileSet_vfjrq")
 format = 2
-layer_0/tile_data = PackedInt32Array(1572898, 65536, 268435465, 1703960, 196608, 9, 1703964, 196608, 9, 1572882, 65536, 9, 1179674, 0, 9, 1179681, 0, 9, 1179669, 0, 9)
+layer_0/tile_data = PackedInt32Array(1572898, 65536, 268435465, 1703960, 196608, 9, 1703964, 196608, 9, 1572882, 65536, 9, 1179674, 0, 9, 1179681, 0, 9, 1179669, 0, 9, 458774, 0, 9, 458781, 0, 9, 458787, 0, 9, 458793, 0, 9, 458761, 0, 9, 786437, 0, 9, 262131, 0, 9, 262143, 0, 9, 262137, 0, 9, -32, 0, 9, -28, 0, 9, 262092, 0, 9, 262102, 0, 9, 262097, 0, 9, 393147, 0, 9, -327770, 0, 9, -327776, 0, 9, -327782, 0, 9, -327788, 0, 9, -327794, 0, 9, -327800, 0, 9, 1179617, 0, 9, 1179620, 0, 9, 2293746, 0, 9, 2293749, 65536, 0, 2293748, 0, 9, -131198, 65536, 9, 196482, 65536, 9, 524162, 65536, 9, 851842, 65536, 9, 1179522, 65536, 9, 1507202, 65536, 9, 589770, 65536, 9, 851914, 65536, 9, 720881, 65536, 9, 917489, 65536, 9, 720928, 65536, 9, 1441778, 65536, 9, 2424811, 65536, 9, 2686955, 65536, 9, 2949099, 65536, 9, 2949116, 65536, 268435465, 2686972, 65536, 268435465, 2424828, 65536, 268435465, 655320, 65536, 268435465, 917464, 65536, 268435465, 655296, 65536, 268435465, 851904, 65536, 268435465, 589737, 65536, 268435465, 786345, 65536, 268435465, 196521, 65536, 268435465, -131159, 65536, 268435465, 1179561, 65536, 268435465, 1507241, 65536, 268435465, 786433, 65536, 268435465, 983041, 65536, 268435465, 720939, 65536, 268435465, 786358, 65536, 9, 589750, 65536, 9, 196573, 65536, 9, 1441757, 65536, 9, 196583, 65536, 268435465, 1441768, 65536, 268435465, 262029, 196608, 9, 982925, 196608, 9, 262047, 196608, 9, 982943, 196608, 9, 3145711, 196608, 9, 3145720, 196608, 9, 720889, 196608, 9, 1179597, 196608, 9, 1179605, 196608, 9, 720849, 196608, 9)
 script = ExtResource("3_lgp75")
-
-[node name="PointLight2D8" type="PointLight2D" parent="TileMapForeground"]
-position = Vector2(557.273, 390)
-scale = Vector2(0.426435, 0.426435)
-texture = ExtResource("6_om5tq")
 
 [node name="Player" parent="." instance=ExtResource("2_xeefm")]
 position = Vector2(165, 154)
-
-[node name="VampireMob" parent="." instance=ExtResource("3_ev4mk")]
-position = Vector2(82, 78)
 
 [node name="HUD" parent="." instance=ExtResource("4_lh2pk")]
 
@@ -603,31 +594,64 @@ rotation = -0.00344826
 wait_time = 2.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.317647, 0.317647, 0.317647, 1)
 
-[node name="VampireMob2" parent="." instance=ExtResource("3_ev4mk")]
+[node name="Mobs" type="Node" parent="."]
+
+[node name="VampireMob" parent="Mobs" instance=ExtResource("3_ev4mk")]
+position = Vector2(82, 78)
+
+[node name="VampireMob2" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(263, 120)
 
-[node name="VampireMob3" parent="." instance=ExtResource("3_ev4mk")]
+[node name="VampireMob3" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(111, 182)
 
-[node name="VampireMob4" parent="." instance=ExtResource("3_ev4mk")]
+[node name="VampireMob4" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(255, 191)
 
-[node name="VampireMob5" parent="." instance=ExtResource("3_ev4mk")]
+[node name="VampireMob5" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(446, -72)
 
-[node name="VampireMob6" parent="." instance=ExtResource("3_ev4mk")]
+[node name="VampireMob6" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(393, -44)
 
-[node name="VampireMob7" parent="." instance=ExtResource("3_ev4mk")]
+[node name="VampireMob7" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(397, -93)
 
-[node name="VampireMob8" parent="." instance=ExtResource("3_ev4mk")]
+[node name="VampireMob8" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(210, -103)
 
-[node name="VampireMob9" parent="." instance=ExtResource("3_ev4mk")]
+[node name="VampireMob9" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(160, -103)
+
+[node name="VampireMob10" parent="Mobs" instance=ExtResource("3_ev4mk")]
+position = Vector2(-584, 399)
+
+[node name="VampireMob11" parent="Mobs" instance=ExtResource("3_ev4mk")]
+position = Vector2(-403, 441)
+
+[node name="VampireMob12" parent="Mobs" instance=ExtResource("3_ev4mk")]
+position = Vector2(-555, 503)
+
+[node name="VampireMob13" parent="Mobs" instance=ExtResource("3_ev4mk")]
+position = Vector2(-411, 512)
+
+[node name="VampireMob14" parent="Mobs" instance=ExtResource("3_ev4mk")]
+position = Vector2(-284, -118)
+
+[node name="VampireMob15" parent="Mobs" instance=ExtResource("3_ev4mk")]
+position = Vector2(-337, -90)
+
+[node name="VampireMob16" parent="Mobs" instance=ExtResource("3_ev4mk")]
+position = Vector2(-333, -139)
+
+[node name="VampireMob17" parent="Mobs" instance=ExtResource("3_ev4mk")]
+position = Vector2(-480, -123)
+
+[node name="VampireMob18" parent="Mobs" instance=ExtResource("3_ev4mk")]
+position = Vector2(-479, -40)
 
 [connection signal="changed_attack" from="HUD" to="Player" method="_on_hud_changed_attack"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
