@@ -604,12 +604,14 @@ position = Vector2(82, 78)
 
 [node name="VampireMob2" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(263, 120)
+scale = Vector2(-1, 1)
 
 [node name="VampireMob3" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(111, 182)
 
 [node name="VampireMob4" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(255, 191)
+scale = Vector2(-1, 1)
 
 [node name="VampireMob5" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(446, -72)

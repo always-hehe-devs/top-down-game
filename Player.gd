@@ -38,6 +38,11 @@ func _physics_process(_delta):
 	elif mouse_dir.x > 0:
 		animation.scale.x = 1
 	
+	if input_dir != Vector2(0,0):
+		animation.play("Run")
+	else:
+		animation.play("Idle")
+	
 	velocity = input_dir * speed
 	
 	move_and_slide()

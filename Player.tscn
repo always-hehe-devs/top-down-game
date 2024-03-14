@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://cjy2w47ir50to"]
 
-[ext_resource type="Texture2D" uid="uid://co7081vxxxir1" path="res://assets/priest3_v2_1.png" id="1_0hl3o"]
 [ext_resource type="Script" path="res://Player.gd" id="1_p347t"]
-[ext_resource type="Texture2D" uid="uid://cw3l6ba6v1vcx" path="res://assets/priest3_v2_2.png" id="2_oojnd"]
-[ext_resource type="Texture2D" uid="uid://dmvedv001t772" path="res://assets/priest3_v2_3.png" id="3_yw8el"]
-[ext_resource type="Texture2D" uid="uid://1w4o5bdbla74" path="res://assets/priest3_v2_4.png" id="4_7n63h"]
+[ext_resource type="Texture2D" uid="uid://bck7te2b6o22f" path="res://assets/player/mage1.png" id="2_xe70i"]
+[ext_resource type="Texture2D" uid="uid://cjs1ku83x1ypp" path="res://assets/player/mage2.png" id="3_j72lt"]
+[ext_resource type="Texture2D" uid="uid://blxym8fx8q1qs" path="res://assets/player/mage3.png" id="4_hiyde"]
+[ext_resource type="Texture2D" uid="uid://crsihc1uqjcbt" path="res://assets/player/mage4.png" id="5_bjgaj"]
 [ext_resource type="Script" path="res://HurtBox.gd" id="6_2vibx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhpqa"]
@@ -14,19 +14,24 @@ size = Vector2(16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_0hl3o")
+"texture": ExtResource("2_xe70i")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_oojnd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_yw8el")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_7n63h")
+"texture": ExtResource("3_j72lt")
 }],
 "loop": true,
 "name": &"Idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_hiyde")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bjgaj")
+}],
+"loop": true,
+"name": &"Run",
 "speed": 5.0
 }]
 
@@ -62,8 +67,8 @@ shape = SubResource("RectangleShape2D_yhpqa")
 z_index = 1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_32wwg")
-animation = &"Idle"
-frame_progress = 0.843956
+animation = &"Run"
+frame_progress = 0.438584
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
