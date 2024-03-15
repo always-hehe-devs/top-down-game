@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjy2w47ir50to"]
+[gd_scene load_steps=13 format=3 uid="uid://cjy2w47ir50to"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_p347t"]
+[ext_resource type="Texture2D" uid="uid://c3mw4sexjalrc" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="2_b4q0o"]
 [ext_resource type="Texture2D" uid="uid://bck7te2b6o22f" path="res://assets/player/mage1.png" id="2_xe70i"]
 [ext_resource type="Texture2D" uid="uid://cjs1ku83x1ypp" path="res://assets/player/mage2.png" id="3_j72lt"]
 [ext_resource type="Texture2D" uid="uid://blxym8fx8q1qs" path="res://assets/player/mage3.png" id="4_hiyde"]
@@ -69,6 +70,11 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_32wwg")
 animation = &"Run"
 frame_progress = 0.438584
+
+[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
+position = Vector2(5, -5)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_b4q0o")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
