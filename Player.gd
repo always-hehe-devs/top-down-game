@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 var normal_speed = 100
 var health = 100
 @onready var animation = $AnimatedSprite2D

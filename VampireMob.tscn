@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgwy0vfbmao7a"]
+[gd_scene load_steps=13 format=3 uid="uid://dgwy0vfbmao7a"]
 
 [ext_resource type="Script" path="res://VampireMob.gd" id="1_s5lm6"]
 [ext_resource type="Texture2D" uid="uid://n6843ugy36mg" path="res://assets/vampire_v2_1.png" id="2_hi1fs"]
@@ -49,6 +49,9 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 anti_aliasing = false
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ltnfb"]
+radius = 200.01
+
 [node name="VampireMob" type="CharacterBody2D"]
 z_index = 1
 collision_layer = 4
@@ -93,9 +96,9 @@ position = Vector2(21, -14)
 collision_layer = 4
 collision_mask = 2
 
-[node name="CollisionShape" type="CollisionPolygon2D" parent="DetectArea"]
-position = Vector2(-30, 14)
-polygon = PackedVector2Array(-15, 0, 0, -35, 171, -60, 171, 69, -8, 34)
+[node name="CollisionShape" type="CollisionShape2D" parent="DetectArea"]
+position = Vector2(-21, 15)
+shape = SubResource("CircleShape2D_ltnfb")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="DetectArea" to="." method="_on_detect_area_body_entered"]

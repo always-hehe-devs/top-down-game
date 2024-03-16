@@ -578,7 +578,7 @@ layer_0/tile_data = PackedInt32Array(1572898, 65536, 268435465, 1703960, 196608,
 script = ExtResource("3_lgp75")
 
 [node name="Player" parent="." instance=ExtResource("2_xeefm")]
-position = Vector2(165, 154)
+position = Vector2(76, 28)
 
 [node name="HUD" parent="." instance=ExtResource("4_lh2pk")]
 
@@ -600,18 +600,16 @@ color = Color(0.317647, 0.317647, 0.317647, 1)
 [node name="Mobs" type="Node" parent="."]
 
 [node name="VampireMob" parent="Mobs" instance=ExtResource("3_ev4mk")]
-position = Vector2(82, 78)
+position = Vector2(121, 83)
 
 [node name="VampireMob2" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(263, 120)
-scale = Vector2(-1, 1)
 
 [node name="VampireMob3" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(111, 182)
 
 [node name="VampireMob4" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(255, 191)
-scale = Vector2(-1, 1)
 
 [node name="VampireMob5" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(446, -72)
