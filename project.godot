@@ -78,6 +78,7 @@ attack_2={
 2d_physics/layer_1="World"
 2d_physics/layer_2="Player"
 2d_physics/layer_4="Hurt_HitBoxes"
+2d_physics/layer_5="World Objects See Through"
 
 [rendering]
 

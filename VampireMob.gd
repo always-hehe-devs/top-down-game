@@ -20,12 +20,12 @@ func _physics_process(_delta):
 		MOB_STATE.IDLE:
 			print('')
 		MOB_STATE.AIMING:
-			var is_visible = check_if_player_is_visible()
-			if is_visible:
+			var is_player_visible = check_if_player_is_visible()
+			if is_player_visible:
 				current_state = MOB_STATE.FOLLOWING
 		MOB_STATE.FOLLOWING:
-			var is_visible = check_if_player_is_visible()
-			if is_visible:
+			var is_player_visible = check_if_player_is_visible()
+			if is_player_visible:
 				move()
 			else:
 				current_state = MOB_STATE.AIMING
@@ -76,4 +76,5 @@ func _on_detect_area_body_entered(body):
 		generate_raycasts()
 
 func _on_detect_area_body_exited(body):
-	current_state = MOB_STATE.IDLE
+	if body is Player:
+		current_state = MOB_STATE.IDLE

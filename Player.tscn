@@ -69,7 +69,8 @@ z_index = 1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_32wwg")
 animation = &"Run"
-frame_progress = 0.438584
+frame = 1
+frame_progress = 0.0651412
 
 [node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
 position = Vector2(5, -5)
