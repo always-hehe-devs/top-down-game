@@ -100,6 +100,15 @@ collision_mask = 2
 position = Vector2(-21, 15)
 shape = SubResource("CircleShape2D_ltnfb")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+navigation_layers = 17
+avoidance_enabled = true
+avoidance_layers = 17
+avoidance_mask = 17
+debug_enabled = true
+debug_path_custom_line_width = 2.0
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="DetectArea" to="." method="_on_detect_area_body_entered"]
 [connection signal="body_exited" from="DetectArea" to="." method="_on_detect_area_body_exited"]

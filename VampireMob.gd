@@ -3,6 +3,7 @@ extends Enemy
 var speed = 40
 
 @onready var animation = $AnimatedSprite2D
+@onready var navigation_agent = $NavigationAgent2D as NavigationAgent2D
 const PortalScene: PackedScene = preload("res://Portal.tscn")
 
 var health = 100
@@ -17,8 +18,6 @@ var current_state = MOB_STATE.IDLE
 func _physics_process(_delta):
 	
 	match current_state:
-		MOB_STATE.IDLE:
-			print('')
 		MOB_STATE.AIMING:
 			var is_player_visible = check_if_player_is_visible()
 			if is_player_visible:
@@ -29,15 +28,21 @@ func _physics_process(_delta):
 				move()
 			else:
 				current_state = MOB_STATE.AIMING
-	
 
 func move():
 	rotate_sprite()
-	velocity = position.direction_to(target.global_position) * speed
+	make_path()
+	var next_path_position := navigation_agent.get_next_path_position()
+
+	var new_velocity = global_position.direction_to(next_path_position) * speed
+	velocity = new_velocity
 	
 	if position.distance_to(target.global_position) > 23:
 		move_and_slide()
 
+func make_path():
+	navigation_agent.set_target_position(target.global_position) 
+	
 func rotate_sprite():
 	var dir_to_target = position.direction_to(target.global_position)
 	
