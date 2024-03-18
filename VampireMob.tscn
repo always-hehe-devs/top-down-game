@@ -89,7 +89,6 @@ show_percentage = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
-autostart = true
 
 [node name="DetectArea" type="Area2D" parent="."]
 position = Vector2(21, -14)
@@ -101,14 +100,11 @@ position = Vector2(-21, 15)
 shape = SubResource("CircleShape2D_ltnfb")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 10.0
-navigation_layers = 17
+path_postprocessing = 1
 avoidance_enabled = true
-avoidance_layers = 17
-avoidance_mask = 17
 debug_enabled = true
-debug_path_custom_line_width = 2.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="DetectArea" to="." method="_on_detect_area_body_entered"]
 [connection signal="body_exited" from="DetectArea" to="." method="_on_detect_area_body_exited"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

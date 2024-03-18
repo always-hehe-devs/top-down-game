@@ -4,6 +4,7 @@ var speed = 40
 
 @onready var animation = $AnimatedSprite2D
 @onready var navigation_agent = $NavigationAgent2D as NavigationAgent2D
+@onready var spell_timer = $Timer
 const PortalScene: PackedScene = preload("res://Portal.tscn")
 
 var health = 100
@@ -18,11 +19,15 @@ var current_state = MOB_STATE.IDLE
 func _physics_process(_delta):
 	
 	match current_state:
+		MOB_STATE.IDLE:
+			spell_timer.stop()
 		MOB_STATE.AIMING:
 			var is_player_visible = check_if_player_is_visible()
 			if is_player_visible:
 				current_state = MOB_STATE.FOLLOWING
 		MOB_STATE.FOLLOWING:
+			if spell_timer.is_stopped():
+				spell_timer.start()
 			var is_player_visible = check_if_player_is_visible()
 			if is_player_visible:
 				move()
@@ -34,12 +39,11 @@ func move():
 	make_path()
 	var next_path_position := navigation_agent.get_next_path_position()
 
-	var new_velocity = global_position.direction_to(next_path_position) * speed
-	velocity = new_velocity
+	var dir = global_position.direction_to(next_path_position)
+	var intented_velocity = dir  * speed
+	navigation_agent.velocity = intented_velocity
+	move_and_slide()
 	
-	if position.distance_to(target.global_position) > 23:
-		move_and_slide()
-
 func make_path():
 	navigation_agent.set_target_position(target.global_position) 
 	
@@ -83,3 +87,6 @@ func _on_detect_area_body_entered(body):
 func _on_detect_area_body_exited(body):
 	if body is Player:
 		current_state = MOB_STATE.IDLE
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity):
+	velocity = safe_velocity
