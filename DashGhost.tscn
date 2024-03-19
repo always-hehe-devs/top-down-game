@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ssw7trp2pxj7"]
+
+[ext_resource type="Script" path="res://DashGhost.gd" id="1_3e7re"]
+[ext_resource type="Texture2D" uid="uid://bck7te2b6o22f" path="res://assets/player/mage1.png" id="1_pnj3f"]
+
+[node name="DashGhost" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_pnj3f")
+script = ExtResource("1_3e7re")

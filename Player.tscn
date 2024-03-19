@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjy2w47ir50to"]
+[gd_scene load_steps=14 format=3 uid="uid://cjy2w47ir50to"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_p347t"]
 [ext_resource type="Texture2D" uid="uid://c3mw4sexjalrc" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="2_b4q0o"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://blxym8fx8q1qs" path="res://assets/player/mage3.png" id="4_hiyde"]
 [ext_resource type="Texture2D" uid="uid://crsihc1uqjcbt" path="res://assets/player/mage4.png" id="5_bjgaj"]
 [ext_resource type="Script" path="res://HurtBox.gd" id="6_2vibx"]
+[ext_resource type="PackedScene" uid="uid://cvkplqy8kva2r" path="res://Dash.tscn" id="8_r5ygi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhpqa"]
 size = Vector2(16, 16)
@@ -99,3 +100,5 @@ debug_color = Color(0.309804, 0.494118, 1, 0.419608)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+
+[node name="Dash" parent="." instance=ExtResource("8_r5ygi")]

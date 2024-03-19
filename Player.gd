@@ -2,9 +2,10 @@ extends CharacterBody2D
 
 class_name Player
 
-var normal_speed = 100
+var normal_speed = 80
 var health = 100
 @onready var animation = $AnimatedSprite2D
+@onready var dash = $Dash
 
 const FireballScene: PackedScene = preload("res://Fireball.tscn")
 const WaterballScene: PackedScene = preload("res://Waterball.tscn")
@@ -13,9 +14,6 @@ const WaterballScene: PackedScene = preload("res://Waterball.tscn")
 
 var current_attack = "attack_1"
 var mouse_dir
-var is_dashing = false;
-var dash_speed = 400;
-var dash_duration = 0.1
 
 func _ready():
 	animation.play("Idle")
@@ -26,8 +24,8 @@ func _physics_process(_delta):
 	
 	var speed
 	
-	if is_dashing:
-		speed = dash_speed
+	if dash.is_dashing():
+		speed = dash.speed
 		set_collision_mask_value(3,false)
 		hurtbox.set_disabled(true)
 	else:
@@ -57,17 +55,8 @@ func _unhandled_input(event):
 			"attack_2":
 				shoot(WaterballScene)	
 	if event.is_action_pressed("ui_select"):
-		dash()
-		
-func dash():
-	var timer: Timer = Timer.new()
-	add_child(timer)
-	timer.one_shot = true
-	timer.autostart = true
-	timer.wait_time = 0.1
-	timer.timeout.connect(func():is_dashing = false)
-	timer.start()
-	is_dashing = true;
+		dash.start_dash()
+	
 
 func shoot(projectile: PackedScene) -> void:
 	var bullet = projectile.instantiate()
