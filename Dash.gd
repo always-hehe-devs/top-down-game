@@ -2,9 +2,9 @@ extends Node2D
 class_name Dash
 
 @onready var timer = $DashTimer
-var dash_ghost_scene = preload("res://DashGhost.tscn")
 @onready var current_scene = get_tree().get_current_scene()
 
+var dash_ghost_scene = preload("res://DashGhost.tscn")
 var speed = 400
 
 func _ready():
@@ -13,7 +13,7 @@ func _ready():
 	timer.wait_time = 0.1
 	timer.timeout.connect(end_dash)
 	
-func _process(delta):
+func _process(_delta):
 	if is_dashing():
 		instance_dash_ghost()
 	

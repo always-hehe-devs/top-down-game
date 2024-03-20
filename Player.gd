@@ -66,7 +66,7 @@ func shoot(projectile: PackedScene) -> void:
 
 func take_damage(damage):
 	health -= damage
-	%ProgressBar.value = health
+	Events.player_attacked.emit(health)
 
 func _on_hud_changed_attack(attack):
 	current_attack = attack

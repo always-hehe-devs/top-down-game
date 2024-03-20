@@ -9,6 +9,9 @@ var current_attack = "attack_1"
 
 signal changed_attack(attack)
 
+func _ready():
+	Events.connect("player_attacked", on_player_attacked)
+
 func _unhandled_key_input(event):
 	if event.is_action(current_attack):
 		return
@@ -20,3 +23,6 @@ func _unhandled_key_input(event):
 		active_rect.set_position(waterball.position + Vector2(-waterball.texture.get_width()/2.0 -2, -waterball.texture.get_height()/2.0 -2))
 		current_attack = "attack_2"
 	changed_attack.emit(current_attack)
+
+func on_player_attacked(health):
+	%ProgressBar.value = health

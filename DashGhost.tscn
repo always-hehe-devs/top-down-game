@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://ssw7trp2pxj7"]
+[gd_scene load_steps=5 format=3 uid="uid://ssw7trp2pxj7"]
 
 [ext_resource type="Script" path="res://DashGhost.gd" id="1_3e7re"]
+[ext_resource type="Shader" path="res://DashGhost.gdshader" id="1_od7l6"]
 [ext_resource type="Texture2D" uid="uid://bck7te2b6o22f" path="res://assets/player/mage1.png" id="1_pnj3f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pdgft"]
+shader = ExtResource("1_od7l6")
+shader_parameter/whiten = true
+shader_parameter/mix_weight = 1.0
 
 [node name="DashGhost" type="Sprite2D"]
 texture_filter = 1
+material = SubResource("ShaderMaterial_pdgft")
 texture = ExtResource("1_pnj3f")
 script = ExtResource("1_3e7re")
