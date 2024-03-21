@@ -6,6 +6,7 @@ var normal_speed = 80
 var health = 100
 @onready var animation = $AnimatedSprite2D
 @onready var dash = $Dash
+@onready var health_depletion_timer = $HealthDepletionTimer
 
 const FireballScene: PackedScene = preload("res://Fireball.tscn")
 const WaterballScene: PackedScene = preload("res://Waterball.tscn")
@@ -14,12 +15,13 @@ const WaterballScene: PackedScene = preload("res://Waterball.tscn")
 
 var current_attack = "attack_1"
 var mouse_dir
+var input_dir
 
 func _ready():
 	animation.play("Idle")
 
 func _physics_process(_delta):
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	mouse_dir = get_global_mouse_position() - position;
 	
 	var speed
@@ -45,6 +47,7 @@ func _physics_process(_delta):
 	
 	velocity = input_dir * speed
 	
+	handle_health_depletion()
 	move_and_slide()
 
 func _unhandled_input(event):
@@ -64,6 +67,22 @@ func shoot(projectile: PackedScene) -> void:
 	bullet.direction = global_position.direction_to(get_global_mouse_position())
 	add_child(bullet)
 
+
+func handle_health_depletion():
+	if input_dir == Vector2(0,0):
+		start_health_depletion()
+	else:
+		end_health_depletion()
+		
+func start_health_depletion():
+	if health_depletion_timer.is_stopped():
+		health_depletion_timer.start()
+		health_depletion_timer.timeout.connect(func():take_damage(3))
+
+func end_health_depletion():
+	if !health_depletion_timer.is_stopped():
+		health_depletion_timer.stop()
+	
 func take_damage(damage):
 	health -= damage
 	Events.player_attacked.emit(health)
