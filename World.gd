@@ -1,5 +1,9 @@
 extends Node
 
+
+func _ready():
+	get_tree().paused = true
+	
 func spawn_mob():
 	var new_mob = preload("res://VampireMob.tscn").instantiate()
 	%PathFollow2D.progress_ratio = randf()

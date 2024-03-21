@@ -19,6 +19,7 @@ var input_dir
 
 func _ready():
 	animation.play("Idle")
+	health_depletion_timer.timeout.connect(func():take_damage(3))
 
 func _physics_process(_delta):
 	input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -67,7 +68,6 @@ func shoot(projectile: PackedScene) -> void:
 	bullet.direction = global_position.direction_to(get_global_mouse_position())
 	add_child(bullet)
 
-
 func handle_health_depletion():
 	if input_dir == Vector2(0,0):
 		start_health_depletion()
@@ -77,13 +77,13 @@ func handle_health_depletion():
 func start_health_depletion():
 	if health_depletion_timer.is_stopped():
 		health_depletion_timer.start()
-		health_depletion_timer.timeout.connect(func():take_damage(3))
 
 func end_health_depletion():
 	if !health_depletion_timer.is_stopped():
 		health_depletion_timer.stop()
 	
 func take_damage(damage):
+	print(damage,'here')
 	health -= damage
 	Events.player_attacked.emit(health)
 
