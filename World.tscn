@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ciriowljkojjw"]
+[gd_scene load_steps=28 format=3 uid="uid://ciriowljkojjw"]
 
 [ext_resource type="Texture2D" uid="uid://dshq3ahsb25s1" path="res://assets/Dungeon_Tileset.png" id="1_6r7do"]
 [ext_resource type="Script" path="res://World.gd" id="1_quq06"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://TileMapForeground.gd" id="3_lgp75"]
 [ext_resource type="PackedScene" uid="uid://18c32k00y3tv" path="res://hud.tscn" id="4_lh2pk"]
 [ext_resource type="Script" path="res://InitPanel.gd" id="7_126fv"]
+[ext_resource type="FontFile" uid="uid://dd84sf3dkql73" path="res://assets/PixelifySans-Regular.ttf" id="8_pdimg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5dp3j"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -879,11 +880,13 @@ size_flags_vertical = 4
 script = ExtResource("7_126fv")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/Panel"]
+texture_filter = 1
 layout_mode = 0
 offset_left = 12.0
 offset_top = 9.0
 offset_right = 165.0
-offset_bottom = 55.0
+offset_bottom = 36.0
+theme_override_fonts/normal_font = ExtResource("8_pdimg")
 theme_override_font_sizes/normal_font_size = 10
 text = "You are a mage in sneakers. Stop and you will lose your life."
 fit_content = true
@@ -892,10 +895,11 @@ scroll_active = false
 [node name="Button" type="Button" parent="Control/Panel"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 63.0
-offset_top = 36.0
-offset_right = 110.0
-offset_bottom = 67.0
+offset_left = 70.0
+offset_top = 42.0
+offset_right = 99.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 6
 text = "OK"
 
 [connection signal="changed_attack" from="HUD" to="Player" method="_on_hud_changed_attack"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6l2wx58f1els"]
+
+[ext_resource type="Script" path="res://DamageLabel.gd" id="1_i5na3"]
+[ext_resource type="FontFile" uid="uid://dd84sf3dkql73" path="res://assets/PixelifySans-Regular.ttf" id="2_3pkwc"]
+
+[node name="DamageLabel" type="Node2D"]
+script = ExtResource("1_i5na3")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_3pkwc")
+text = "asd"

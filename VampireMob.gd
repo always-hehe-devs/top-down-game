@@ -64,6 +64,11 @@ func check_if_player_is_visible()-> bool:
 	return false
 
 func take_damage(damage):
+	var label = preload("res://DamageLabel.tscn").instantiate()
+	
+	label.global_position = global_position
+	label.set_damage(damage)
+	add_child(label)
 	health -= damage
 	%ProgressBar.value = health
 	if health <= 0:

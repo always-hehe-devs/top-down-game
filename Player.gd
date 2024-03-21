@@ -83,7 +83,6 @@ func end_health_depletion():
 		health_depletion_timer.stop()
 	
 func take_damage(damage):
-	print(damage,'here')
 	health -= damage
 	Events.player_attacked.emit(health)
 
