@@ -91,7 +91,7 @@ shape = SubResource("CircleShape2D_vk1ui")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(16, 0)
-scale = Vector2(0.4, 0.4)
+color = Color(1, 0.792157, 0.498039, 0.415686)
 texture = ExtResource("13_fg3hm")
 
 [connection signal="body_entered" from="ImpactDetector" to="." method="_on_impact_detector_body_entered"]
