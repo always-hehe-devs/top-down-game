@@ -72,7 +72,7 @@ func take_damage(damage):
 	health -= damage
 	%ProgressBar.value = health
 	if health <= 0:
-		queue_free()
+		on_death()
 
 func throw_spell():
 	var spell = PortalScene.instantiate()
@@ -95,3 +95,10 @@ func _on_detect_area_body_exited(body):
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity
+	
+func on_death():
+	var coin = preload("res://Coin.tscn").instantiate()
+	
+	coin.global_position = global_position
+	await get_parent().call_deferred("add_child",coin)
+	queue_free()

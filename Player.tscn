@@ -9,8 +9,9 @@
 [ext_resource type="Script" path="res://HurtBox.gd" id="6_2vibx"]
 [ext_resource type="PackedScene" uid="uid://cvkplqy8kva2r" path="res://Dash.tscn" id="8_r5ygi"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhpqa"]
-size = Vector2(16, 16)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_erpam"]
+radius = 5.0
+height = 12.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_32wwg"]
 animations = [{
@@ -47,7 +48,7 @@ collision_mask = 7
 script = ExtResource("1_p347t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_yhpqa")
+shape = SubResource("CapsuleShape2D_erpam")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1

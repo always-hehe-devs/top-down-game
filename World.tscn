@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://ciriowljkojjw"]
+[gd_scene load_steps=40 format=3 uid="uid://ciriowljkojjw"]
 
 [ext_resource type="Texture2D" uid="uid://dshq3ahsb25s1" path="res://assets/Dungeon_Tileset.png" id="1_6r7do"]
 [ext_resource type="Script" path="res://World.gd" id="1_quq06"]
@@ -1003,11 +1003,6 @@ texture = ExtResource("3_xadpf")
 4:6/0/physics_layer_0/angular_velocity = 0.0
 4:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:6/0/terrains_peering_bit/top_right_corner = 1
-1:2/0 = 0
-1:2/0/terrain_set = 0
-1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-1:2/0/physics_layer_0/angular_velocity = 0.0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0 = 0
 1:1/0/terrain_set = 0
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -1158,22 +1153,6 @@ physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 6
 sources/0 = SubResource("TileSetAtlasSource_waakd")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpb5m"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4no1k"]
-bg_color = Color(0, 0.705882, 0.513726, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-anti_aliasing = false
-
 [node name="World" type="Node"]
 script = ExtResource("1_quq06")
 
@@ -1198,21 +1177,11 @@ collision_mask = 23
 
 [node name="HUD" parent="." instance=ExtResource("4_lh2pk")]
 
-[node name="ProgressBar" type="ProgressBar" parent="HUD"]
-unique_name_in_owner = true
-offset_left = 18.0
-offset_top = 22.0
-offset_right = 72.0
-offset_bottom = 28.0
-theme_override_styles/background = SubResource("StyleBoxFlat_fpb5m")
-theme_override_styles/fill = SubResource("StyleBoxFlat_4no1k")
-value = 100.0
-show_percentage = false
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.317647, 0.317647, 0.317647, 1)
 
 [node name="Mobs" type="Node" parent="."]

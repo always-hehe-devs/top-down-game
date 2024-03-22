@@ -4,6 +4,8 @@ class_name Player
 
 var normal_speed = 80
 var health = 100
+var money = 0
+
 @onready var animation = $AnimatedSprite2D
 @onready var dash = $Dash
 @onready var health_depletion_timer = $HealthDepletionTimer
@@ -88,3 +90,8 @@ func take_damage(damage):
 
 func _on_hud_changed_attack(attack):
 	current_attack = attack
+
+func increase_money(amount):
+	print('player')
+	money +=amount
+	Events.set_total_money.emit(money)

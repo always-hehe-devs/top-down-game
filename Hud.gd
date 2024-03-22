@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @onready var active_rect = $ActiveRect
+@onready var money_label = %MoneyLabel
 
 var current_attack = "attack_1"
 
@@ -11,6 +12,7 @@ signal changed_attack(attack)
 
 func _ready():
 	Events.connect("player_attacked", on_player_attacked)
+	Events.connect("set_total_money", on_money_change)
 
 func _unhandled_key_input(event):
 	if event.is_action(current_attack):
@@ -26,3 +28,6 @@ func _unhandled_key_input(event):
 
 func on_player_attacked(health):
 	%ProgressBar.value = health
+	
+func on_money_change(amount):
+	money_label.text = str(amount)
