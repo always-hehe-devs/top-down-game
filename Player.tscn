@@ -73,7 +73,15 @@ shape = SubResource("RectangleShape2D_e2bn2")
 debug_color = Color(0.309804, 0.494118, 1, 0.419608)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(2, 2)
+zoom = Vector2(1.4, 1.4)
+process_callback = 0
 position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_vertical_offset = -0.08
+drag_right_margin = 0.1
 
 [node name="Dash" parent="." instance=ExtResource("8_r5ygi")]
 
