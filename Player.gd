@@ -92,6 +92,5 @@ func _on_hud_changed_attack(attack):
 	current_attack = attack
 
 func increase_money(amount):
-	print('player')
 	money +=amount
 	Events.set_total_money.emit(money)

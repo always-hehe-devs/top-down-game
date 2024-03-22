@@ -101,4 +101,5 @@ func on_death():
 	
 	coin.global_position = global_position
 	await get_parent().call_deferred("add_child",coin)
+	Events.emit_signal("on_mob_killed")
 	queue_free()
