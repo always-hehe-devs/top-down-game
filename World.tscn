@@ -1220,7 +1220,7 @@ position = Vector2(255, 191)
 platform_floor_layers = 1
 
 [node name="VampireMob5" parent="Mobs" instance=ExtResource("3_ev4mk")]
-position = Vector2(446, -72)
+position = Vector2(408, -70)
 platform_floor_layers = 1
 
 [node name="VampireMob6" parent="Mobs" instance=ExtResource("3_ev4mk")]

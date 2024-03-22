@@ -10,7 +10,7 @@ const PortalScene: PackedScene = preload("res://Portal.tscn")
 var health = 100
 var is_following = false
 
-enum MOB_STATE {IDLE, FOLLOWING, AIMING }
+enum MOB_STATE {IDLE, FOLLOWING, AIMING, DEAD }
 
 var target = null
 
@@ -71,7 +71,7 @@ func take_damage(damage):
 	add_child(label)
 	health -= damage
 	%ProgressBar.value = health
-	if health <= 0:
+	if health <= 0 && current_state != MOB_STATE.DEAD:
 		on_death()
 
 func throw_spell():
@@ -97,9 +97,11 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity
 	
 func on_death():
+	current_state = MOB_STATE.DEAD
 	var coin = preload("res://Coin.tscn").instantiate()
 	
 	coin.global_position = global_position
 	await get_parent().call_deferred("add_child",coin)
 	Events.emit_signal("on_mob_killed")
+	
 	queue_free()
