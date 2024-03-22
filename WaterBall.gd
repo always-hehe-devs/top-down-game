@@ -22,5 +22,5 @@ func on_destroy():
 	sprite.play("Explode")
 
 func _on_impact_detector_body_entered(body):
-	if body.name == 'TileMap':
+	if body.name.contains('TileMap'):
 		on_hit()

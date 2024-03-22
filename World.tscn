@@ -1199,168 +1199,135 @@ collision_mask = 23
 wait_time = 2.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.317647, 0.317647, 0.317647, 1)
 
 [node name="Mobs" type="Node" parent="."]
 
 [node name="VampireMob" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(121, 83)
 platform_floor_layers = 1
 
 [node name="VampireMob2" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(263, 120)
 platform_floor_layers = 1
 
 [node name="VampireMob3" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(111, 182)
 platform_floor_layers = 1
 
 [node name="VampireMob4" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(255, 191)
 platform_floor_layers = 1
 
 [node name="VampireMob5" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(446, -72)
 platform_floor_layers = 1
 
 [node name="VampireMob6" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(393, -44)
 platform_floor_layers = 1
 
 [node name="VampireMob7" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(397, -93)
 platform_floor_layers = 1
 
 [node name="VampireMob8" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(210, -103)
 platform_floor_layers = 1
 
 [node name="VampireMob9" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(160, -103)
 platform_floor_layers = 1
 
 [node name="VampireMob10" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-584, 399)
 platform_floor_layers = 1
 
 [node name="VampireMob11" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-403, 441)
 platform_floor_layers = 1
 
 [node name="VampireMob12" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-555, 503)
 platform_floor_layers = 1
 
 [node name="VampireMob13" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-411, 512)
 platform_floor_layers = 1
 
 [node name="VampireMob14" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-284, -118)
 platform_floor_layers = 1
 
 [node name="VampireMob15" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-337, -90)
 platform_floor_layers = 1
 
 [node name="VampireMob16" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-333, -139)
 platform_floor_layers = 1
 
 [node name="VampireMob17" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-480, -123)
 platform_floor_layers = 1
 
 [node name="VampireMob18" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-479, -40)
 platform_floor_layers = 1
 
 [node name="VampireMob19" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-803, -236)
 platform_floor_layers = 1
 
 [node name="VampireMob20" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-696, -239)
 platform_floor_layers = 1
 
 [node name="VampireMob21" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-808, 142)
 platform_floor_layers = 1
 
 [node name="VampireMob22" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-681, 143)
 platform_floor_layers = 1
 
 [node name="VampireMob23" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-739, 136)
 platform_floor_layers = 1
 
 [node name="VampireMob24" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-1118, -144)
 platform_floor_layers = 1
 
 [node name="VampireMob25" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-1121, 1)
 platform_floor_layers = 1
 
 [node name="VampireMob26" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-1118, -78)
 platform_floor_layers = 1
 
 [node name="VampireMob27" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-1092, -145)
 platform_floor_layers = 1
 
 [node name="VampireMob28" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-1094, 1)
 platform_floor_layers = 1
 
 [node name="VampireMob29" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-1017, 8)
 platform_floor_layers = 1
 
 [node name="VampireMob30" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-1012, -138)
 platform_floor_layers = 1
 
 [node name="VampireMob31" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-1047, -180)
 platform_floor_layers = 1
 
 [node name="VampireMob32" parent="Mobs" instance=ExtResource("3_ev4mk")]
-visible = false
 position = Vector2(-1057, 14)
 platform_floor_layers = 1
 

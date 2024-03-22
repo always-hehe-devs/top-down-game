@@ -24,7 +24,7 @@ func _ready():
 	health_depletion_timer.timeout.connect(func():take_damage(3))
 
 func _physics_process(_delta):
-	input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	input_dir = Input.get_vector("left", "right", "up", "down")
 	mouse_dir = get_global_mouse_position() - position;
 	
 	var speed
@@ -60,7 +60,7 @@ func _unhandled_input(event):
 				shoot(FireballScene)
 			"attack_2":
 				shoot(WaterballScene)	
-	if event.is_action_pressed("ui_select"):
+	if event.is_action_pressed("dash"):
 		dash.start_dash()
 	
 
