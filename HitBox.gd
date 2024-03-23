@@ -7,6 +7,7 @@ var damage := 10
 
 func on_hit():
 	if get_parent().has_method("on_hit"):
+		print(get_parent())
 		get_parent().on_hit()
 
 func set_disabled(is_disabled):

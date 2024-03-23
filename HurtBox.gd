@@ -10,7 +10,8 @@ func _ready() -> void:
 	connect("area_entered", _on_area_entered)
 
 func _on_area_entered(hitbox: HitBox):
-	if hitbox.owner != owner && owner.has_method("take_damage"):
+	## "hitbox.owner.get_parent() != owner" - this is check for fireball if its owner is not the player who throws spell
+	if (hitbox.owner != owner and hitbox.owner.get_parent() != owner) && owner.has_method("take_damage"):
 		owner.take_damage(hitbox.damage)
 		hitbox.on_hit()
 		
