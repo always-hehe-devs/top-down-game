@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://ciriowljkojjw"]
+[gd_scene load_steps=43 format=3 uid="uid://ciriowljkojjw"]
 
 [ext_resource type="Texture2D" uid="uid://dshq3ahsb25s1" path="res://assets/Dungeon_Tileset.png" id="1_6r7do"]
 [ext_resource type="Script" path="res://World.gd" id="1_quq06"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://InitPanel.gd" id="7_126fv"]
 [ext_resource type="FontFile" uid="uid://dd84sf3dkql73" path="res://assets/PixelifySans-Regular.ttf" id="8_pdimg"]
 [ext_resource type="PackedScene" uid="uid://mm5ktrpqslq6" path="res://Gate.tscn" id="10_hxlr6"]
+[ext_resource type="PackedScene" uid="uid://bnkyfacndy05b" path="res://SkeletonKnightMob.tscn" id="11_xcyix"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5dp3j"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -1202,6 +1203,9 @@ wait_time = 2.0
 color = Color(0.317647, 0.317647, 0.317647, 1)
 
 [node name="Mobs" type="Node" parent="."]
+
+[node name="SkeletonKnightMob" parent="Mobs" instance=ExtResource("11_xcyix")]
+position = Vector2(174, 124)
 
 [node name="VampireMob" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(144, 98)

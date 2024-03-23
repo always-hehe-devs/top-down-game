@@ -14,10 +14,15 @@ func make_path():
 	
 func rotate_sprite():
 	var dir_to_target = position.direction_to(target.global_position)
-	
+	var hitbox = get_node_or_null("HitBox")
+		
 	if dir_to_target.x < 0:
+		if hitbox:
+			hitbox.scale.x = -1
 		animation.scale.x = -1
 	elif dir_to_target.x > 0:
+		if hitbox:
+			hitbox.scale.x = 1
 		animation.scale.x = 1
 
 func take_damage(damage):
