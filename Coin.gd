@@ -14,9 +14,10 @@ func _ready() -> void:
 	initial_position = global_position
 	velocity = Vector2(randi_range(-50, 50), -200)
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if global_position.y <= initial_position.y:
 		gravity= gravity*0.95
+		print(gravity)
 		velocity += gravity * delta
 		global_position += velocity * delta
 	if target:
