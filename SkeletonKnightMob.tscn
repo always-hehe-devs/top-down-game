@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bnkyfacndy05b"]
+[gd_scene load_steps=19 format=3 uid="uid://bnkyfacndy05b"]
 
 [ext_resource type="PackedScene" uid="uid://cw8pudw003ja0" path="res://BaseMob.tscn" id="1_e8yym"]
 [ext_resource type="Script" path="res://SkeletonKnightMob.gd" id="2_0b8bq"]
@@ -104,6 +104,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ruw7"]
+radius = 6.0
+height = 18.0
+
 [node name="SkeletonKnightMob" instance=ExtResource("1_e8yym")]
 script = ExtResource("2_0b8bq")
 
@@ -124,3 +128,14 @@ polygon = PackedVector2Array(6, -9, 15, -9, 15, 14, 0, 14, 0, 8, 6, 8)
 [node name="ChangeStanceTimer" type="Timer" parent="." index="7"]
 
 [node name="FollowingStanceTimer" type="Timer" parent="." index="8"]
+
+[node name="ReflectArea" type="Area2D" parent="." index="9"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReflectArea" index="0"]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_7ruw7")
+debug_color = Color(0.25098, 0.517647, 0.960784, 0.419608)
+
+[connection signal="area_entered" from="ReflectArea" to="." method="_on_reflect_area_area_entered"]

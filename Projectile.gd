@@ -32,3 +32,9 @@ func init_animation():
 func on_destroy():
 	pass
 
+func deflect():
+	var new_direction = direction * -1
+	direction = new_direction
+	rotate(180)
+	
+

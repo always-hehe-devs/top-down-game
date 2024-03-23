@@ -25,7 +25,7 @@ func _physics_process(_delta):
 		MOB_STATE.AIMING:
 			var is_player_visible = check_if_player_is_visible()
 			if is_player_visible:
-				current_state = MOB_STATE.FOLLOWING
+				switch_state(MOB_STATE.FOLLOWING)
 		MOB_STATE.FOLLOWING:
 			play_animation("Idle")
 			var is_player_visible = check_if_player_is_visible()
@@ -33,10 +33,10 @@ func _physics_process(_delta):
 				if following_stance_timer.is_stopped():
 					following_stance_timer.start(rng.randf_range(2.0, 5.0))
 				if global_position.distance_to(target.global_position) < 30:
-					current_state = MOB_STATE.ATTACKING
+					switch_state(MOB_STATE.ATTACKING)
 				move()
 			else:
-				current_state = MOB_STATE.AIMING
+				switch_state(MOB_STATE.AIMING)
 		MOB_STATE.ATTACKING:
 			following_stance_timer.stop()
 			set_stance_timer()
@@ -49,25 +49,25 @@ func _physics_process(_delta):
 			
 func attack():
 	if global_position.distance_to(target.global_position) > 30:
-		current_state = MOB_STATE.FOLLOWING
+		switch_state(MOB_STATE.FOLLOWING)
 	hitbox.set_disabled(false)
 	play_animation("Attack")
 	
 func defend():
+	$HurtBox.set_disabled(true)
 	play_animation("Defence")
 
 func change_stance():
 	if current_state == MOB_STATE.ATTACKING:
-		current_state = MOB_STATE.DEFENCE
+		switch_state(MOB_STATE.DEFENCE)
 	elif current_state == MOB_STATE.DEFENCE:
-		current_state = MOB_STATE.ATTACKING
-
+		switch_state(MOB_STATE.ATTACKING)
 
 func change_following_stance():
 	if current_state == MOB_STATE.FOLLOWING:
-		current_state = MOB_STATE.DEFENCE
+		switch_state(MOB_STATE.DEFENCE)
 	elif current_state == MOB_STATE.DEFENCE:
-		current_state = MOB_STATE.FOLLOWING
+		switch_state(MOB_STATE.FOLLOWING)
 
 func set_stance_timer():
 	if stance_timer.is_stopped():
@@ -84,11 +84,20 @@ func move():
 	move_and_slide()
 
 func on_body_entered(_body):
-	current_state = MOB_STATE.AIMING
+	switch_state(MOB_STATE.AIMING)
 
 func on_body_exited(_body):
-	current_state = MOB_STATE.IDLE
+	switch_state(MOB_STATE.IDLE)
 
 func play_animation(animation_name):
 	if animation.animation != animation_name:
 		animation.play(animation_name)
+
+func switch_state(new_state):
+	current_state = new_state
+	if new_state != MOB_STATE.DEFENCE && $HurtBox.get_disabled():
+		$HurtBox.set_disabled(false)
+
+func _on_reflect_area_area_entered(area):
+	if area.get_parent().has_method("deflect"):
+		area.get_parent().deflect()

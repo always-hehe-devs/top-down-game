@@ -17,3 +17,6 @@ func _on_area_entered(hitbox: HitBox):
 		
 func set_disabled(is_disabled):
 	collision_shape.disabled = is_disabled
+	
+func get_disabled():
+	return collision_shape.disabled
