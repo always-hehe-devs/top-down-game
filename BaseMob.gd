@@ -1,6 +1,6 @@
 class_name BaseMob extends Enemy
 
-@onready var animation = $AnimatedSprite2D
+@onready var animation := $AnimatedSprite2D
 @onready var navigation_agent = $NavigationAgent2D as NavigationAgent2D
 
 var speed = 40

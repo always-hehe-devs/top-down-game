@@ -3,15 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://dshq3ahsb25s1" path="res://assets/Dungeon_Tileset.png" id="1_6r7do"]
 [ext_resource type="Script" path="res://World.gd" id="1_quq06"]
 [ext_resource type="PackedScene" uid="uid://cjy2w47ir50to" path="res://Player.tscn" id="2_xeefm"]
-[ext_resource type="PackedScene" uid="uid://dgwy0vfbmao7a" path="res://VampireMob.tscn" id="3_ev4mk"]
+[ext_resource type="PackedScene" uid="uid://txn0ld07irxn" path="res://VampireMob.tscn" id="3_ev4mk"]
 [ext_resource type="Script" path="res://TileMapForeground.gd" id="3_lgp75"]
 [ext_resource type="Texture2D" uid="uid://dj0vh2rupl0qk" path="res://assets/my_sheets.png" id="3_xadpf"]
 [ext_resource type="PackedScene" uid="uid://18c32k00y3tv" path="res://hud.tscn" id="4_lh2pk"]
 [ext_resource type="Script" path="res://InitPanel.gd" id="7_126fv"]
 [ext_resource type="FontFile" uid="uid://dd84sf3dkql73" path="res://assets/PixelifySans-Regular.ttf" id="8_pdimg"]
 [ext_resource type="PackedScene" uid="uid://mm5ktrpqslq6" path="res://Gate.tscn" id="10_hxlr6"]
-[ext_resource type="PackedScene" path="res://SkeletonKnightMob.tscn" id="11_xcyix"]
-[ext_resource type="PackedScene" uid="uid://gbruk8ql3yr4" path="res://SkeletonKing.tscn" id="12_eim1c"]
+[ext_resource type="PackedScene" uid="uid://bnkyfacndy05b" path="res://SkeletonKnightMob.tscn" id="11_xcyix"]
+[ext_resource type="PackedScene" path="res://SkeletonKing.tscn" id="12_eim1c"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5dp3j"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -1201,12 +1201,19 @@ collision_mask = 23
 wait_time = 2.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.317647, 0.317647, 0.317647, 1)
 
 [node name="Mobs" type="Node" parent="."]
 
 [node name="SkeletonKnightMob" parent="Mobs" instance=ExtResource("11_xcyix")]
 position = Vector2(174, 124)
+
+[node name="SkeletonKnightMob2" parent="Mobs" instance=ExtResource("11_xcyix")]
+position = Vector2(-1376, -100)
+
+[node name="VampireMob2" parent="Mobs" instance=ExtResource("3_ev4mk")]
+position = Vector2(-1335, -129)
 
 [node name="VampireMob" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(143, 99)

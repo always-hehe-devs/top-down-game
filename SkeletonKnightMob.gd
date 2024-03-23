@@ -1,32 +1,78 @@
 extends BaseMob
 
-enum MOB_STATE {IDLE, FOLLOWING, AIMING, DEAD }
+enum MOB_STATE {IDLE, FOLLOWING, AIMING, ATTACKING, DEAD, DEFENCE }
 
 var current_state = MOB_STATE.IDLE
 
 @onready var hitbox := $HitBox 
+@onready var stance_timer := $ChangeStanceTimer
+@onready var following_stance_timer := $FollowingStanceTimer
+
+var rng = RandomNumberGenerator.new()
 
 func _ready():
 	hitbox.set_disabled(true)
+	stance_timer.one_shot = true
+	stance_timer.timeout.connect(change_stance)
+	following_stance_timer.one_shot = true
+	following_stance_timer.timeout.connect(change_following_stance)
 
 func _physics_process(_delta):
 	
 	match current_state:
+		MOB_STATE.IDLE:
+			play_animation("Idle")
 		MOB_STATE.AIMING:
 			var is_player_visible = check_if_player_is_visible()
 			if is_player_visible:
 				current_state = MOB_STATE.FOLLOWING
 		MOB_STATE.FOLLOWING:
+			play_animation("Idle")
 			var is_player_visible = check_if_player_is_visible()
 			if is_player_visible:
+				if following_stance_timer.is_stopped():
+					following_stance_timer.start(rng.randf_range(2.0, 5.0))
+				if global_position.distance_to(target.global_position) < 30:
+					current_state = MOB_STATE.ATTACKING
 				move()
-				attack()
 			else:
 				current_state = MOB_STATE.AIMING
-	
+		MOB_STATE.ATTACKING:
+			following_stance_timer.stop()
+			set_stance_timer()
+			attack()
+			move()
+		MOB_STATE.DEFENCE:
+			set_stance_timer()
+			defend()
+			move()
+			
 func attack():
+	if global_position.distance_to(target.global_position) > 30:
+		current_state = MOB_STATE.FOLLOWING
 	hitbox.set_disabled(false)
+	play_animation("Attack")
 	
+func defend():
+	play_animation("Defence")
+
+func change_stance():
+	if current_state == MOB_STATE.ATTACKING:
+		current_state = MOB_STATE.DEFENCE
+	elif current_state == MOB_STATE.DEFENCE:
+		current_state = MOB_STATE.ATTACKING
+
+
+func change_following_stance():
+	if current_state == MOB_STATE.FOLLOWING:
+		current_state = MOB_STATE.DEFENCE
+	elif current_state == MOB_STATE.DEFENCE:
+		current_state = MOB_STATE.FOLLOWING
+
+func set_stance_timer():
+	if stance_timer.is_stopped():
+		stance_timer.start(rng.randf_range(2.0, 5.0))
+
 func move():
 	rotate_sprite()
 	make_path()
@@ -42,3 +88,7 @@ func on_body_entered(_body):
 
 func on_body_exited(_body):
 	current_state = MOB_STATE.IDLE
+
+func play_animation(animation_name):
+	if animation.animation != animation_name:
+		animation.play(animation_name)
