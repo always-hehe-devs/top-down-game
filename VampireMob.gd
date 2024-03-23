@@ -1,18 +1,9 @@
-extends Enemy
+extends "res://BaseMob.gd"
 
-var speed = 40
-
-@onready var animation = $AnimatedSprite2D
-@onready var navigation_agent = $NavigationAgent2D as NavigationAgent2D
 @onready var spell_timer = $Timer
 const PortalScene: PackedScene = preload("res://Portal.tscn")
 
-var health = 100
-var is_following = false
-
 enum MOB_STATE {IDLE, FOLLOWING, AIMING, DEAD }
-
-var target = null
 
 var current_state = MOB_STATE.IDLE
 
@@ -43,36 +34,6 @@ func move():
 	var intented_velocity = dir  * speed
 	navigation_agent.velocity = intented_velocity
 	move_and_slide()
-	
-func make_path():
-	navigation_agent.set_target_position(target.global_position) 
-	
-func rotate_sprite():
-	var dir_to_target = position.direction_to(target.global_position)
-	
-	if dir_to_target.x < 0:
-		animation.scale.x = -1
-	elif dir_to_target.x > 0:
-		animation.scale.x = 1
-
-func check_if_player_is_visible()-> bool:
-	if get_node_or_null("RayNode") != null:
-		direct_raycast_to_target()
-		for ray in get_node("RayNode").get_children():
-			if ray.is_colliding() and ray.get_collider() is Player:
-				return true
-	return false
-
-func take_damage(damage):
-	var label = preload("res://DamageLabel.tscn").instantiate()
-	
-	label.global_position = global_position
-	label.set_damage(damage)
-	add_child(label)
-	health -= damage
-	%ProgressBar.value = health
-	if health <= 0 && current_state != MOB_STATE.DEAD:
-		on_death()
 
 func throw_spell():
 	var spell = PortalScene.instantiate()
@@ -83,25 +44,8 @@ func _on_timer_timeout():
 	if current_state == MOB_STATE.FOLLOWING:
 		throw_spell()
 
-func _on_detect_area_body_entered(body):
-	if body is Player:
-		target = body
-		current_state = MOB_STATE.AIMING
-		generate_raycasts()
+func on_body_entered(_body):
+	current_state = MOB_STATE.AIMING
 
-func _on_detect_area_body_exited(body):
-	if body is Player:
-		current_state = MOB_STATE.IDLE
-
-func _on_navigation_agent_2d_velocity_computed(safe_velocity):
-	velocity = safe_velocity
-	
-func on_death():
-	current_state = MOB_STATE.DEAD
-	var coin = preload("res://Coin.tscn").instantiate()
-	
-	coin.global_position = global_position
-	await get_parent().call_deferred("add_child",coin)
-	Events.emit_signal("on_mob_killed")
-	
-	queue_free()
+func on_body_exited(_body):
+	current_state = MOB_STATE.IDLE

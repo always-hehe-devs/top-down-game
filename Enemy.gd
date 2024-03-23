@@ -28,3 +28,11 @@ func direct_raycast_to_target():
 	if get_node_or_null("RayNode") != null:
 		for ray in get_node("RayNode").get_children():
 			ray.target_position = to_local(player.global_position)
+
+func check_if_player_is_visible()-> bool:
+	if get_node_or_null("RayNode") != null:
+		direct_raycast_to_target()
+		for ray in get_node("RayNode").get_children():
+			if ray.is_colliding() and ray.get_collider() is Player:
+				return true
+	return false
