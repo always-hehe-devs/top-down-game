@@ -3,7 +3,7 @@ class_name Projectile
 
 var direction := Vector2.ZERO
 var speed = 100
-@onready var hitbox := $HitBox
+@onready var hitbox := $HitBox as Area2D
 @onready var sprite := $AnimatedSprite2D
 
 var destroy = false
@@ -31,10 +31,3 @@ func init_animation():
 
 func on_destroy():
 	pass
-
-func deflect():
-	var new_direction = direction * -1
-	direction = new_direction
-	rotate(180)
-	
-

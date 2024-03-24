@@ -117,9 +117,13 @@ animation = &"Defence"
 frame = 3
 frame_progress = 1.0
 
+[node name="HurtBox" parent="." index="2"]
+collision_layer = 0
+collision_mask = 512
+
 [node name="HitBox" type="Area2D" parent="." index="6"]
 collision_layer = 8
-collision_mask = 8
+collision_mask = 0
 script = ExtResource("4_myg33")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="HitBox" index="0"]
@@ -131,7 +135,7 @@ polygon = PackedVector2Array(6, -9, 15, -9, 15, 14, 0, 14, 0, 8, 6, 8)
 
 [node name="ReflectArea" type="Area2D" parent="." index="9"]
 collision_layer = 0
-collision_mask = 8
+collision_mask = 512
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ReflectArea" index="0"]
 position = Vector2(0, -1)

@@ -2,6 +2,7 @@ extends Area2D
 class_name HitBox
 
 var damage := 10
+var owner_name
 
 @onready var collision_shape := $CollisionShape2D
 

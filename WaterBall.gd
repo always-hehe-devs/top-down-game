@@ -1,7 +1,5 @@
 extends Projectile
 
-@onready var impact_detector := $ImpactDetector
-
 func _physics_process(delta):
 	proj_physics_process(delta)
 	if destroy and not sprite.is_playing():

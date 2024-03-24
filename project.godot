@@ -126,6 +126,7 @@ dash={
 2d_physics/layer_3="Enemies"
 2d_physics/layer_4="Hurt_HitBoxes"
 2d_physics/layer_5="World Objects See Through"
+2d_physics/layer_10="PHitHurtBox"
 
 [navigation]
 
