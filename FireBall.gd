@@ -4,22 +4,20 @@ extends Projectile
 func _ready():
 	super()
 	speed = 50
-	tween.tween_property(self, "speed",100,1).set_trans(Tween.TRANS_QUART)
+	tween.tween_property(self, "speed",100,1).set_ease(Tween.EASE_IN_OUT)
 
 func proj_physics_process(delta):
 	position += direction * speed * delta
-
-func on_hit():
-	speed = 0
-	destroy = true
-	tween.stop()
-	on_destroy()
 
 func init_animation():
 	sprite.play("Move")
 
 func on_destroy():
+	speed = 0
+	destroy = true
+	tween.stop()
 	sprite.play("Explode")
+	hitbox.set_collision_layer_value(10,false)
 
 func _on_impact_detector_body_entered(body):
 	if body.name.contains('TileMap'):

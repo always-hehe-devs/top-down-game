@@ -17,8 +17,8 @@ func _ready():
 	following_stance_timer.one_shot = true
 	following_stance_timer.timeout.connect(change_following_stance)
 
-func _physics_process(_delta):
-	
+func _physics_process(delta):
+	handle_knockback(delta)
 	match current_state:
 		MOB_STATE.IDLE:
 			play_animation("Idle")
@@ -46,7 +46,7 @@ func _physics_process(_delta):
 			set_stance_timer()
 			defend()
 			move()
-			
+	
 func attack():
 	if global_position.distance_to(target.global_position) > 30:
 		switch_state(MOB_STATE.FOLLOWING)
@@ -101,3 +101,7 @@ func switch_state(new_state):
 func _on_reflect_area_area_entered(area):
 	if area.get_parent().has_method("deflect") && current_state == MOB_STATE.DEFENCE:
 		area.get_parent().deflect()
+
+func knock_back(source_position):
+	knock_back_time = 1
+	pushback_force = -global_position.direction_to(source_position) * 3000

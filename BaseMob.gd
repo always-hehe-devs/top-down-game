@@ -8,7 +8,9 @@ var health = 100
 var is_following = false
 var target = null
 var is_dead = false
-	
+var knock_back_time = 0
+var pushback_force = Vector2(0,0)
+
 func make_path():
 	navigation_agent.set_target_position(target.global_position) 
 	
@@ -64,3 +66,9 @@ func death():
 	
 	queue_free()
 
+func handle_knockback(delta):
+	if knock_back_time > 0:
+		knock_back_time -= delta*10
+		var new_pushback_force = lerp(pushback_force, Vector2.ZERO, delta * 10)
+		pushback_force = new_pushback_force
+		velocity = pushback_force * delta
