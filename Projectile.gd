@@ -2,7 +2,7 @@ extends Node2D
 class_name Projectile
 
 var direction := Vector2.ZERO
-var speed = 100
+var speed = 1
 @onready var hitbox := $HitBox as Area2D
 @onready var sprite := $AnimatedSprite2D
 

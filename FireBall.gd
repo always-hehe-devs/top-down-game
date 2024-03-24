@@ -1,4 +1,10 @@
 extends Projectile
+@onready var tween := create_tween()
+
+func _ready():
+	super()
+	speed = 50
+	tween.tween_property(self, "speed",100,1).set_trans(Tween.TRANS_QUART)
 
 func proj_physics_process(delta):
 	position += direction * speed * delta
@@ -6,6 +12,7 @@ func proj_physics_process(delta):
 func on_hit():
 	speed = 0
 	destroy = true
+	tween.stop()
 	on_destroy()
 
 func init_animation():

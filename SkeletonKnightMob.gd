@@ -99,5 +99,5 @@ func switch_state(new_state):
 		$HurtBox.set_disabled(false)
 
 func _on_reflect_area_area_entered(area):
-	if area.get_parent().has_method("deflect"):
+	if area.get_parent().has_method("deflect") && current_state == MOB_STATE.DEFENCE:
 		area.get_parent().deflect()
