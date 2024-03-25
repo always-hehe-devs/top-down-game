@@ -3,6 +3,7 @@ extends BaseMob
 enum MOB_STATE {IDLE, FOLLOWING, AIMING, DEAD }
 
 var current_state = MOB_STATE.IDLE
+@onready var resurrect_timer = $ResurrectTimer
 
 func _physics_process(delta):
 	
@@ -18,6 +19,15 @@ func _physics_process(delta):
 			else:
 				current_state = MOB_STATE.AIMING
 
+func resurrect_skeleton():
+	var to_player_vector = to_local(target.global_position)
+	var spawn_position = to_player_vector/2
+	var spawned_mob = preload("res://SkeletonKnightMob.tscn").instantiate()
+	
+	spawned_mob.position = to_global(spawn_position)
+	
+	get_parent().add_child(spawned_mob)
+	
 func move(delta):
 	rotate_sprite()
 	make_path()
@@ -44,11 +54,18 @@ func make_path():
 		navigation_agent.set_target_position(to_global(vector_to_target))
 	
 func on_body_entered(_body):
+	resurrect_timer.start()
 	current_state = MOB_STATE.AIMING
 
 func on_body_exited(_body):
+	resurrect_timer.stop()
 	current_state = MOB_STATE.IDLE
 
 func knock_back(source_position):
 	knock_back_time = 1
 	pushback_force = -global_position.direction_to(source_position) * 3000
+
+func _on_resurrect_timer_timeout():
+	print('here')
+	if current_state == MOB_STATE.FOLLOWING:
+		resurrect_skeleton()
