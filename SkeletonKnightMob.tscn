@@ -114,12 +114,7 @@ script = ExtResource("2_0b8bq")
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_vv56k")
 animation = &"Defence"
-frame = 3
-frame_progress = 1.0
-
-[node name="HurtBox" parent="." index="2"]
-collision_layer = 0
-collision_mask = 512
+frame_progress = 0.0
 
 [node name="HitBox" type="Area2D" parent="." index="6"]
 collision_layer = 8

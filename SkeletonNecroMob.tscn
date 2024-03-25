@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6u2cm8vsn62q"]
+
+[ext_resource type="PackedScene" uid="uid://cw8pudw003ja0" path="res://BaseMob.tscn" id="1_gh0h2"]
+[ext_resource type="Texture2D" uid="uid://by13uldtskt8v" path="res://assets/enemies/skeleton_mage.png" id="2_nlbcn"]
+[ext_resource type="Script" path="res://SkeletonNecroMob.gd" id="2_oogmu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eh6q3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nlbcn")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="SkeletonNecroMob" instance=ExtResource("1_gh0h2")]
+script = ExtResource("2_oogmu")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_eh6q3")
+frame_progress = 0.0
+
+[node name="NavigationAgent2D" parent="." index="5"]
+debug_enabled = true

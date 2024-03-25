@@ -6,10 +6,6 @@
 [node name="VampireMob" instance=ExtResource("1_unwxk")]
 script = ExtResource("2_y7m6g")
 
-[node name="HurtBox" parent="." index="2"]
-collision_layer = 0
-collision_mask = 512
-
 [node name="ProgressBar" parent="." index="3"]
 metadata/_edit_use_anchors_ = true
 

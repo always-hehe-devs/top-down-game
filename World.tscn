@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://ciriowljkojjw"]
+[gd_scene load_steps=45 format=3 uid="uid://ciriowljkojjw"]
 
 [ext_resource type="Texture2D" uid="uid://dshq3ahsb25s1" path="res://assets/Dungeon_Tileset.png" id="1_6r7do"]
 [ext_resource type="Script" path="res://World.gd" id="1_quq06"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://mm5ktrpqslq6" path="res://Gate.tscn" id="10_hxlr6"]
 [ext_resource type="PackedScene" uid="uid://bnkyfacndy05b" path="res://SkeletonKnightMob.tscn" id="11_xcyix"]
 [ext_resource type="PackedScene" path="res://SkeletonKing.tscn" id="12_eim1c"]
+[ext_resource type="PackedScene" uid="uid://b6u2cm8vsn62q" path="res://SkeletonNecroMob.tscn" id="13_fg747"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5dp3j"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -1217,6 +1218,9 @@ position = Vector2(-1335, -129)
 
 [node name="VampireMob" parent="Mobs" instance=ExtResource("3_ev4mk")]
 position = Vector2(143, 99)
+
+[node name="SkeletonNecroMob" parent="Mobs" instance=ExtResource("13_fg747")]
+position = Vector2(-1345, -71)
 
 [node name="Control" type="Control" parent="."]
 process_mode = 2
