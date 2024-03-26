@@ -66,6 +66,5 @@ func knock_back(source_position):
 	pushback_force = -global_position.direction_to(source_position) * 3000
 
 func _on_resurrect_timer_timeout():
-	print('here')
 	if current_state == MOB_STATE.FOLLOWING:
 		resurrect_skeleton()

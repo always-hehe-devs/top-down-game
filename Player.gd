@@ -2,10 +2,10 @@ extends CharacterBody2D
 
 class_name Player
 
-var normal_speed = 80
+var normal_speed = 100
 var health = 100
 var money = 0
-
+@export var curve:Curve
 @onready var animation = $AnimatedSprite2D
 @onready var dash = $Dash
 
@@ -16,26 +16,28 @@ const WaterballScene: PackedScene = preload("res://Waterball.tscn")
 
 var current_attack = "attack_1"
 var mouse_dir
-var input_dir
+var input_dir = Vector2(0,0)
+var time = 0
+var max_time = 2
 
 func _ready():
 	animation.play("Idle")
 
 func _physics_process(_delta):
-	input_dir = Input.get_vector("left", "right", "up", "down")
 	mouse_dir = get_global_mouse_position() - position;
 	
-	var speed
-	
+	var speed = 0
 	if dash.is_dashing():
 		speed = dash.speed
 		set_collision_mask_value(3,false)
 		hurtbox.set_disabled(true)
 	else:
-		speed = normal_speed
+		time +=_delta
+		var new_speed = normal_speed * curve.sample(time/max_time)
+		speed = new_speed
 		set_collision_mask_value(3,true)
 		hurtbox.set_disabled(false)
-		
+	
 	if mouse_dir.x < 0:
 		animation.scale.x = -1
 	elif mouse_dir.x > 0:
@@ -50,7 +52,11 @@ func _physics_process(_delta):
 	
 	move_and_slide()
 
-func _unhandled_input(event):
+func _input(event):
+	var new_input_dir = Input.get_vector("left", "right", "up", "down")
+	if input_dir == Vector2(0,0):
+		time = 0
+	input_dir = new_input_dir
 	if event.is_action_pressed("left_click"):
 		match current_attack:
 			"attack_1":

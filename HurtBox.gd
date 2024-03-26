@@ -16,9 +16,8 @@ func _on_area_entered(hitbox: HitBox):
 	if owner.has_method("knock_back"):
 		owner.knock_back(hitbox.global_position)
 		
-		
 func set_disabled(is_disabled):
-	collision_shape.disabled = is_disabled
+	collision_shape.set_deferred("disabled", is_disabled)
 	
 func get_disabled():
 	return collision_shape.disabled

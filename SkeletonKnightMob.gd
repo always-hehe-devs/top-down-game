@@ -54,8 +54,8 @@ func attack():
 	play_animation("Attack")
 	
 func defend():
-	$HurtBox.set_disabled(true)
 	play_animation("Defence")
+	$HurtBox.set_disabled(true)
 
 func change_stance():
 	if current_state == MOB_STATE.ATTACKING:
