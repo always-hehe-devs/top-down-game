@@ -35,6 +35,8 @@ func _physics_process(delta):
 			set_collision_mask_value(3,true)
 			handle_input()
 		STATE.DASHING:
+			if animation.animation != "Dash":
+				animation.play("Dash")
 			speed = dash.speed
 			set_collision_mask_value(3,false)
 			hurtbox.set_disabled(true)

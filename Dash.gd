@@ -5,17 +5,22 @@ class_name Dash
 @onready var current_scene = get_tree().get_current_scene()
 
 var dash_ghost_scene = preload("res://DashGhost.tscn")
-var speed = 400
+var speed = 300
+var time = 0
+const TIME_PERIOD = 0.05
 
 func _ready():
 	timer.one_shot = true
 	timer.autostart = true
-	timer.wait_time = 0.1
+	timer.wait_time = 0.2
 	timer.timeout.connect(end_dash)
 	
-func _process(_delta):
+func _process(delta):
 	if is_dashing():
-		instance_dash_ghost()
+		time +=delta
+		if time > TIME_PERIOD:
+			time = 0
+			instance_dash_ghost()
 	
 func start_dash():
 	if not is_dashing():
