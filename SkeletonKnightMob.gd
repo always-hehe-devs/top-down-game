@@ -27,7 +27,7 @@ func _physics_process(delta):
 			if is_player_visible:
 				switch_state(MOB_STATE.FOLLOWING)
 		MOB_STATE.FOLLOWING:
-			play_animation("Idle")
+			play_animation("Run")
 			var is_player_visible = check_if_player_is_visible()
 			if is_player_visible:
 				if following_stance_timer.is_stopped():

@@ -17,7 +17,7 @@ var mouse_dir
 var input_dir = Vector2(0,0)
 var acc_time = 0
 var deacc_time = 0
-var max_acc_time = 2
+var max_acc_time = 1
 var max_deacc_time = 1
 var speed = 0
 
@@ -54,10 +54,11 @@ func _physics_process(delta):
 	
 func handle_movement(delta):
 	if not is_moving() and velocity != Vector2(0,0):
-		var deacc_time = deacc_time +delta
+		deacc_time += delta
 		velocity = velocity * deacc_curve.sample(deacc_time/max_deacc_time)
-	else:
-		velocity = input_dir * speed
+	elif is_moving():
+		acc_time += delta
+		velocity = input_dir * speed * acc_curve.sample(acc_time/max_acc_time)
 	move_and_slide()
 
 func is_moving():
