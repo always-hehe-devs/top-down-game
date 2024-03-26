@@ -18,8 +18,9 @@ func _process(_delta):
 		instance_dash_ghost()
 	
 func start_dash():
-	timer.start()
-	instance_dash_ghost()
+	if not is_dashing():
+		timer.start()
+		instance_dash_ghost()
 
 func instance_dash_ghost():
 	var dash_ghost = dash_ghost_scene.instantiate()

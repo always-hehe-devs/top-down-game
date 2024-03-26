@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjy2w47ir50to"]
+[gd_scene load_steps=14 format=3 uid="uid://cjy2w47ir50to"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_p347t"]
 [ext_resource type="Texture2D" uid="uid://c3mw4sexjalrc" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="2_b4q0o"]
@@ -9,8 +9,12 @@
 [ext_resource type="Script" path="res://HurtBox.gd" id="6_2vibx"]
 [ext_resource type="PackedScene" uid="uid://cvkplqy8kva2r" path="res://Dash.tscn" id="8_r5ygi"]
 
-[sub_resource type="Curve" id="Curve_qi4d0"]
-_data = [Vector2(0, 0), 0.0, 11.5116, 0, 1, Vector2(0.0868687, 1), 11.5116, 0.0, 1, 0]
+[sub_resource type="Curve" id="Curve_2vh6o"]
+_data = [Vector2(0, 0), 0.0, 6.875, 0, 1, Vector2(0.145455, 1), 6.875, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_k7wfs"]
+_data = [Vector2(0, 1), 0.0, -11.0, 0, 1, Vector2(0.0909091, 0), -11.0, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_erpam"]
@@ -50,7 +54,8 @@ z_index = 1
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_p347t")
-curve = SubResource("Curve_qi4d0")
+acc_curve = SubResource("Curve_2vh6o")
+deacc_curve = SubResource("Curve_k7wfs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_erpam")
@@ -60,7 +65,7 @@ z_index = 1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_32wwg")
 animation = &"Run"
-frame_progress = 0.469875
+frame_progress = 0.862306
 
 [node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
 position = Vector2(5, -5)
