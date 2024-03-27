@@ -41,6 +41,7 @@ func _physics_process(delta):
 			set_collision_mask_value(3,false)
 			hurtbox.set_disabled(true)
 			if not dash.is_dashing():
+				hurtbox.set_disabled(false)
 				if is_moving():
 					current_state = STATE.RUNNING
 				else:
