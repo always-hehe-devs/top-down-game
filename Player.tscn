@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://cjy2w47ir50to"]
+[gd_scene load_steps=23 format=3 uid="uid://cjy2w47ir50to"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_p347t"]
 [ext_resource type="Texture2D" uid="uid://cwhw72iyn66se" path="res://assets/player/mage-Sheet.png" id="2_8mtf6"]
 [ext_resource type="Texture2D" uid="uid://c3mw4sexjalrc" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="2_b4q0o"]
 [ext_resource type="Script" path="res://HurtBox.gd" id="6_2vibx"]
+[ext_resource type="Script" path="res://components/flash_component.gd" id="7_ma50p"]
 [ext_resource type="PackedScene" uid="uid://cvkplqy8kva2r" path="res://Dash.tscn" id="8_r5ygi"]
 
 [sub_resource type="Curve" id="Curve_2vh6o"]
@@ -132,8 +133,6 @@ z_index = 1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_32wwg")
 animation = &"Dash"
-frame = 2
-frame_progress = 1.0
 
 [node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
 position = Vector2(5, -5)
@@ -161,3 +160,7 @@ drag_vertical_offset = -0.08
 drag_right_margin = 0.1
 
 [node name="Dash" parent="." instance=ExtResource("8_r5ygi")]
+
+[node name="FlashComponent" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("7_ma50p")
+target = NodePath("../AnimatedSprite2D")

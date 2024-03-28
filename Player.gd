@@ -7,6 +7,7 @@ class_name Player
 @onready var animation = $AnimatedSprite2D
 @onready var dash = $Dash
 @onready var hurtbox = $HurtBox
+@onready var flash_component := $FlashComponent
 
 const FireballScene: PackedScene = preload("res://Fireball.tscn")
 
@@ -21,7 +22,7 @@ var max_acc_time = 1
 var max_deacc_time = 1
 var speed = 0
 
-enum STATE {IDLE,RUNNING,ATTACKING,DASHING}
+enum STATE {IDLE,RUNNING,ATTACKING,DASHING,HURT}
 var current_state = STATE.IDLE
 
 func _physics_process(delta):
@@ -49,6 +50,9 @@ func _physics_process(delta):
 			dash.start_dash()
 		STATE.ATTACKING:
 			shoot(FireballScene)
+			handle_input()
+		STATE.HURT:
+			flash_component.flash()
 			handle_input()
 			
 	handle_movement(delta)
@@ -101,6 +105,7 @@ func shoot(projectile: PackedScene) -> void:
 	add_child(bullet)
 	
 func take_damage(damage):
+	current_state = STATE.HURT
 	health -= damage
 	Events.player_attacked.emit(health)
 
